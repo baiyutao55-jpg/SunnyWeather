@@ -46,15 +46,15 @@ object Repository {
 
 
                 val realtimeResponse=deferredRealtime.await()
-                Log.e("DEB","realtimeResponse:::${lng},${lat},${realtimeResponse.result.realtime.airQuality.aqi.chn.toInt()}")
+              //  Log.e("DEB","realtimeResponse:::${lng},${lat},${realtimeResponse.result.realtime.airQuality.aqi.chn.toInt()}")
 
                 val dailyResponse=deferredDaily.await()
-                Log.e("DEB","dailyResponse="+dailyResponse.status)
+              //  Log.e("DEB","dailyResponse="+dailyResponse.status)
 
 
 
                 if(realtimeResponse.status=="ok" && dailyResponse.status=="ok"){
-                    Log.e("DEB","realtimeResponse="+realtimeResponse.result.realtime.toString())
+                   // Log.e("DEB","realtimeResponse="+realtimeResponse.result.realtime.toString())
                     val weather= Weather(realtimeResponse.result.realtime,dailyResponse.result.daily)
                     Result.success(weather)
                 } else{
@@ -68,7 +68,7 @@ object Repository {
             }
 
         } catch (e: Exception){
-            Log.e("DEB","Result.failure="+e.toString())
+           // Log.e("DEB","Result.failure="+e.toString())
             Result.failure<Weather>(e)
 
         }
